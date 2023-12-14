@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comunicación entre Componentes</title>
+</head>
+<body>
+
+    <div id="emisor">
+        <button id="botonEmisor">Enviar Mensaje</button>
+    </div>
+    
+    <div id="receptor">
+        <p>Mensaje Recibido: <span id="mensajeRecibido"></span></p>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Código JavaScript aquí para garantizar que el DOM esté completamente cargado
+            
+            const botonEmisor = document.getElementById('botonEmisor');
+            const mensajeRecibido = document.getElementById('mensajeRecibido');
+
+            botonEmisor.addEventListener('click', function() {
+                const evento = new CustomEvent('mensajeEnviado', {
+                    detail: 'Este es un mensaje desde el emisor.'
+                });
+                document.dispatchEvent(evento);
+            });
+
+            document.addEventListener('mensajeEnviado', function(event) {
+                const mensaje = event.detail;
+                mensajeRecibido.textContent = mensaje;
+            });
+        });
+    </script>
+</body>
+</html>
