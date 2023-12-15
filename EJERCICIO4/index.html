@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>Lista de Usuarios</h2>
+
+<div id="user-list-component"></div>
+
+<script>
+// Obtener datos de la API
+fetch('https://jsonplaceholder.typicode.com/users')
+  .then(response => response.json())
+  .then(users => {
+    var userListComponent = document.getElementById('user-list-component');
+    users.forEach(user => {
+      // Crear un elemento de lista para cada usuario
+      var listItem = document.createElement('p');
+      listItem.textContent = user.name + ' (' + user.email + ')';
+      userListComponent.appendChild(listItem);
+    });
+  })
+  .catch(error => console.error('Error:', error));
+</script>
+
+</body>
+</html>

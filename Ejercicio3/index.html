@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    .contenedor {
+      border: 1px solid #ccc;
+      padding: 10px;
+      margin: 10px;
+    }
+    .encabezado {
+      font-weight: bold;
+      color: #333;
+    }
+    .contenido {
+      color: #666;
+    }
+  </style>
+</head>
+<body>
+  <contenedor-component>
+    <span slot="encabezado">Mi Encabezado Personalizado</span>
+    <span slot="contenido">Mi Contenido Personalizado</span>
+  </contenedor-component>
+
+  <template id="template">
+    <div class="contenedor">
+      <div class="encabezado">
+        <slot name="encabezado">Encabezado por defecto</slot>
+      </div>
+      <div class="contenido">
+        <slot name="contenido">Contenido por defecto</slot>
+      </div>
+    </div>
+  </template>
+
+  <script>
+    class ContenedorComponent extends HTMLElement {
+      constructor() {
+        super();
+        let template = document.querySelector('#template').content;
+        let shadowRoot = this.attachShadow({mode: 'open'});
+        shadowRoot.appendChild(template.cloneNode(true));
+      }
+    }
+    customElements.define('contenedor-component', ContenedorComponent);
+  </script>
+</body>
+</html>

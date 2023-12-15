@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>Contador</h2>
+
+<button onclick="incrementar()">Incrementar</button>
+<button onclick="disminuir()">Disminuir</button>
+<p id="contador">0</p>
+
+<script>
+var contador = 0;
+
+function incrementar() {
+  contador += 1;
+  document.getElementById("contador").innerHTML = contador;
+}
+
+function disminuir() {
+  contador -= 1;
+  document.getElementById("contador").innerHTML = contador;
+}
+</script>
+
+</body>
+</html>
